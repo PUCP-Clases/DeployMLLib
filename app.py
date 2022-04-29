@@ -51,7 +51,7 @@ test_df = splits[1]
 
 st.sidebar.title('Modelos de MLlib Regression')
 st.sidebar.subheader('Selecciona tu modelo')
-mllib_model = st.sidebar.selectbox("Modelos de Regression", \
+mllib_model = st.sidebar.selectbox("Modelos de Regresión", \
         ('Linear Regression', 'Gradient Boost Tree', 'Decision Tree Regressor', \
             'Random Forest Regressor'))
 st.sidebar.text('80 - 20 split')
