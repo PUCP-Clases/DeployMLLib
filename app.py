@@ -2,7 +2,7 @@ from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import DecisionTreeRegressor
 from pyspark.ml.regression import GBTRegressor
 from pyspark.ml.regression import RandomForestRegressor
-from pyspark.ml.regression import FMRegressor
+#from pyspark.ml.regression import FMRegressor
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import LinearRegression
 import streamlit as st
