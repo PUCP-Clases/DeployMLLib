@@ -30,9 +30,9 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 st.title('''New York Airbnb Predicción del Precio''')
-st.subheader('Modelos de Machine Learning Regression in MLlib. \
+st.subheader('Modelos de Machine Learning Regression en MLlib. \
     Dataset [link](https://www.kaggle.com/code/benroshan/belong-anywhere-ny-airbnb-price-prediction/notebook)')
-st.subheader('Editado por [Juan Carlos Tovar](https://www.linkedin.com/in/juan-carlos-tovar-galarreta/) \
+st.subheader('Editado por [Juan Carlos Tovar. ](https://www.linkedin.com/in/juan-carlos-tovar-galarreta/) \
     Github repo [aquí](https://github.com/PUCP-Clases/DeployMLLib)')
 
 
@@ -43,7 +43,7 @@ df = sc.read.csv("airbnb.csv", header=True)
 #Preprocessed data is given as input to save computation
 #df4 = sc.read.load("file:///home/hduser/programs/airbnb-price-pred/processed_data.parquet")
 df4 = sc.read.load("processed_data.parquet")
-splits = df4.randomSplit([0.7, 0.3], seed=12345)
+splits = df4.randomSplit([0.8, 0.2], seed=12345)
 train_df = splits[0]
 test_df = splits[1]
 
