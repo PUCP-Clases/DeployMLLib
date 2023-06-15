@@ -22,6 +22,7 @@ sc = SparkSession.builder.appName('airbnb_price') \
             .getOrCreate()
 
 
+
 st.set_page_config(layout="wide")
 hide_streamlit_style = """
             <style>
