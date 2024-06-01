@@ -41,9 +41,13 @@ st.subheader('Editado por [Juan Carlos Tovar. ](https://www.linkedin.com/in/juan
 
 #df = sc.read.csv("file:///home/hduser/programs/airbnb-price-pred/airbnb.csv", header=True)
 df = sc.read.csv("airbnb.csv", header=True)
+num_rows = df.count()
+num_cols = len(df.columns)
 #Preprocessed data is given as input to save computation
 #df4 = sc.read.load("file:///home/hduser/programs/airbnb-price-pred/processed_data.parquet")
 df4 = sc.read.load("processed_data.parquet")
+num_rows_p = df4.count()
+num_cols_p = len(df4.columns)
 splits = df4.randomSplit([0.8, 0.2], seed=12345)
 train_df = splits[0]
 test_df = splits[1]
@@ -120,6 +124,8 @@ def regression_model(mllib_model, train_df, test_df):
 
 
 st.dataframe(data = df.toPandas().head(10))
+st.text("Dataframe shape: (" + str(num_rows) + "," + str(num_cols) + ")")
+st.text("Dataframe procesado shape: (" + str(num_rows_p) + "," + str(num_cols_p) + ")")
 st.text('Nuestra variable objetivo es el precio y estamos dando datos vectorizados a Apache Spark MLlib')
 st.text('A continuación se muestran los resultados de los datos de las pruebas.')
 r2,rmse,actual,pred = regression_model(mllib_model, train_df, test_df)
