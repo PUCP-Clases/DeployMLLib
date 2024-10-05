@@ -8,6 +8,7 @@ from pyspark.ml.regression import LinearRegression
 import streamlit as st
 from pyspark.sql import SparkSession
 import pandas as pd
+import os
 #from pyspark.sql.functions import *
 from pyspark.sql.functions import udf
 from pyspark.sql.types import FloatType, IntegerType
@@ -17,6 +18,8 @@ from pyspark.ml.feature import MinMaxScaler
 from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
 import matplotlib.pyplot as plt
+
+current_path = os.path.dirname(os.path.abspath(__file__))
 
 sc = SparkSession.builder.appName('airbnb_price') \
             .getOrCreate()
@@ -38,14 +41,15 @@ st.subheader('Editado por [Juan Carlos Tovar. ](https://www.linkedin.com/in/juan
 
 
 #########   DATA
-
+csv_file_path = os.path.join(current_path, "airbnb.csv")
 #df = sc.read.csv("file:///home/hduser/programs/airbnb-price-pred/airbnb.csv", header=True)
-df = sc.read.csv("airbnb.csv", header=True)
+df = sc.read.csv(csv_file_path, header=True)
 num_rows = df.count()
 num_cols = len(df.columns)
 #Preprocessed data is given as input to save computation
 #df4 = sc.read.load("file:///home/hduser/programs/airbnb-price-pred/processed_data.parquet")
-df4 = sc.read.load("processed_data.parquet")
+parquet_file_path = os.path.join(current_path, "processed_data.parquet")
+df4 = sc.read.load(parquet_file_path)
 num_rows_p = df4.count()
 num_cols_p = len(df4.columns)
 splits = df4.randomSplit([0.8, 0.2], seed=12345)
