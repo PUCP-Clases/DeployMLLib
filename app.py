@@ -24,7 +24,13 @@ current_path = os.path.dirname(os.path.abspath(__file__))
 sc = SparkSession.builder.appName('airbnb_price') \
             .getOrCreate()
 
+sc = SparkSession.builder \
+    .appName("YourAppName") \
+    .config("spark.sql.execution.arrow.enabled", "true") \
+    .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+    .getOrCreate()
 
+sc.conf.set("spark.sql.execution.arrow.enabled", "false")
 
 st.set_page_config(layout="wide")
 hide_streamlit_style = """
@@ -126,8 +132,19 @@ def regression_model(mllib_model, train_df, test_df):
         actual = [int(row['label']) for row in fmPredictions.select('label').collect()]
         return r2,rmse,pred,actual"""
 
+def safe_to_pandas(spark_df, num_rows=10):
+    # Get the data as a list of rows
+    rows = spark_df.limit(num_rows).collect()
+    
+    # Convert to list of dictionaries
+    data = [row.asDict() for row in rows]
+    
+    # Convert to pandas
+    import pandas as pd
+    return pd.DataFrame(data)
 
-st.dataframe(data = df.toPandas().head(10))
+df_pd = safe_to_pandas(df, num_rows=10)
+st.dataframe(df_pd)
 st.text("Dataframe shape: (" + str(num_rows) + "," + str(num_cols) + ")")
 st.text("Dataframe procesado shape: (" + str(num_rows_p) + "," + str(num_cols_p) + ")")
 st.text('Nuestra variable objetivo es el precio y estamos dando datos vectorizados a Apache Spark MLlib')
