@@ -1,3 +1,6 @@
-runtime: custom
-env: flex
+command: [
+  "streamlit", 
+  "run",
+  "app.py"
+]
 
