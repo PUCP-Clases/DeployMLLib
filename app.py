@@ -21,8 +21,8 @@ import matplotlib.pyplot as plt
 
 from pyspark.sql import SparkSession
 
-sc = SparkSession.builder.appName('airbnb_price') \
-            .getOrCreate()
+#sc = SparkSession.builder.appName('airbnb_price') \
+#            .getOrCreate()
 
 sc = SparkSession.builder \
     .appName("YourAppName") \
