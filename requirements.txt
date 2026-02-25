@@ -1,6 +1,4 @@
 pyspark>=3.5.0
 pandas
-streamlit>=1.30
-altair>=5
 matplotlib
 numpy
