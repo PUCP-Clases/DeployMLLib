@@ -19,7 +19,11 @@ from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
 import matplotlib.pyplot as plt
 
-sc = spark
+from pyspark.sql import SparkSession
+
+sc = SparkSession.builder \
+    .appName("airbnb_price") \
+    .getOrCreate()
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 
