@@ -1,3 +1,6 @@
+import os
+os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-17-openjdk-amd64"
+
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import DecisionTreeRegressor
 from pyspark.ml.regression import GBTRegressor
