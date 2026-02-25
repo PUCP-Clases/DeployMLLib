@@ -1,4 +1,5 @@
 runtime: python311
+env: flex
 
 entrypoint: >
   bash -c "
