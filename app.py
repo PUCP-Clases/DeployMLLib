@@ -1,6 +1,3 @@
-import os
-os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-17-openjdk-amd64"
-
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml.regression import DecisionTreeRegressor
 from pyspark.ml.regression import GBTRegressor
@@ -22,18 +19,9 @@ from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
 import matplotlib.pyplot as plt
 
+sc = spark
+
 current_path = os.path.dirname(os.path.abspath(__file__))
-
-sc = SparkSession.builder.appName('airbnb_price') \
-            .getOrCreate()
-
-sc = SparkSession.builder \
-    .appName("YourAppName") \
-    .config("spark.sql.execution.arrow.enabled", "true") \
-    .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
-    .getOrCreate()
-
-sc.conf.set("spark.sql.execution.arrow.enabled", "false")
 
 st.set_page_config(layout="wide")
 hide_streamlit_style = """
