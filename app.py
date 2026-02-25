@@ -21,9 +21,16 @@ import matplotlib.pyplot as plt
 
 from pyspark.sql import SparkSession
 
+sc = SparkSession.builder.appName('airbnb_price') \
+            .getOrCreate()
+
 sc = SparkSession.builder \
-    .appName("airbnb_price") \
+    .appName("YourAppName") \
+    .config("spark.sql.execution.arrow.enabled", "true") \
+    .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
     .getOrCreate()
+
+sc.conf.set("spark.sql.execution.arrow.enabled", "false")
 
 current_path = os.path.dirname(os.path.abspath(__file__))
 
