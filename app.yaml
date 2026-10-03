@@ -17,3 +17,4 @@ command: [
 env:
   - name: 'JAVA_HOME'
     value: '/usr/lib/jvm/java-17-openjdk-amd64'
+
